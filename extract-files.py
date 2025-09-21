@@ -44,7 +44,6 @@ blob_fixups: blob_fixups_user_type = {
 
     ('vendor/lib64/hw/android.hardware.gnss-impl-mediatek.so', 'vendor/bin/hw/android.hardware.gnss-service.mediatek'): blob_fixup()
         .replace_needed('android.hardware.gnss-V1-ndk_platform.so', 'android.hardware.gnss-V1-ndk.so'),
-
     ('vendor/bin/mnld', 'vendor/lib64/libaalservice.so', 'vendor/lib64/libcam.utils.sensorprovider.so'): blob_fixup()
         .replace_needed('libsensorndkbridge.so', 'android.hardware.sensors@1.0-convert-shared.so'),
 
@@ -104,6 +103,9 @@ blob_fixups: blob_fixups_user_type = {
 
     ('vendor/lib/libnvram.so', 'vendor/lib64/libnvram.so', 'vendor/lib64/libsysenv.so'): blob_fixup()
         .add_needed('libbase_shim.so'),
+
+    'vendor/bin/hw/mtkfusionrild' : blob_fixup()
+        .add_needed('libutils-v32.so'),
 }
 
 module = ExtractUtilsModule(
